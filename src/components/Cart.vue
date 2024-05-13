@@ -1,42 +1,63 @@
 <template>
+  <ToolBar />
   <v-container>
-    <ToolBar />
     <h2>Tu Carrito</h2>
-    <v-list dense>
-      <v-list-item
-        v-for="item in cartItems"
-        :key="item.id"
-        class="d-flex justify-space-between align-center"
-      >
-        <div class="flex-grow-1">
-          <div class="text-h6">{{ item.title }} - {{ item.quantity }} x ${{ item.price.toFixed(2) }}</div>
-          <div class="text-subtitle-1">{{ item.description }}</div>
-        </div>
-        <div>
-          <v-btn icon @click="decrement(item.id)">
-            <v-icon>mdi-minus</v-icon>
-          </v-btn>
-          <v-btn icon @click="increment(item.id)">
-            <v-icon>mdi-plus</v-icon>
-          </v-btn>
-          <v-btn icon color="red" @click="removeFromCart(item.id)">
-            <v-icon>mdi-delete</v-icon>
-          </v-btn>
-        </div>
-      </v-list-item>
-    </v-list>
-    <div>Total Items: {{ cart.itemCount }}</div>
-    <div>Total Price: ${{ cart.totalPrice.toFixed(2) }}</div>
+    <div v-for="item in cartItems" :key="item.id">
+      <v-card class="mb-3">
+        <v-row>
+          <v-col cols="3">
+            <v-card>
+
+              <v-img :src="item.cover" ></v-img>
+            </v-card>
+          </v-col>
+          <v-col cols="6">
+            <div class="text-h6">{{ item.title }}</div>
+            <div>{{ item.description }}</div>
+            <div>{{ item.style }}</div>
+          </v-col>
+          <v-col cols="3" class="d-flex flex-column justify-space-between">
+            <div class="d-flex justify-end">
+              <v-btn icon @click="decrement(item.id)">
+                <v-icon>mdi-minus</v-icon>
+              </v-btn>
+              {{ item.quantity }}
+              <v-btn icon @click="increment(item.id)">
+                <v-icon>mdi-plus</v-icon>
+              </v-btn>
+            </div>
+            <div class="text-h6 d-flex justify-end">${{ item.price }} </div>
+            <v-btn icon color="red" @click="removeFromCart(item.id)">
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-card>
+    </div>
+    <v-row ma-0 p>
+      <v-col ma-0>
+        <span style="
+          color: blue;
+        ">
+
+          Total de libros: {{ cart.itemCount }}
+        </span>
+      </v-col>
+    </v-row>
+    <v-row mb-0>
+      <v-col mb-0>
+        Precio total: ${{ cart.totalPrice.toFixed(2) }}
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script setup>
 import { useCartStore } from '@/store/useCartStore';
+// import { ref } from 'vue';
 
 const cart = useCartStore();
 const cartItems = cart.items;
-// const itemCount = cart.itemCount;
-// const totalPrice = cart.totalPrice;
 
 function removeFromCart(id) {
   cart.removeFromCart(id);
@@ -52,7 +73,7 @@ function decrement(id) {
 </script>
 
 <style scoped>
-.v-list-item {
-  border-bottom: 1px solid #eee;  /* Optional: for better visual separation of items */
+.v-card {
+  border: 1px solid #eee;
 }
 </style>

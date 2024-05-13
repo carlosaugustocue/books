@@ -12,7 +12,7 @@ const books = [
   },
   {
     id: 2,
-    title: 'La Fundación',
+    title: 'Trilogía de la Fundación',
     author: 'Isaac Asimov',
     year: 1951,
     genre: 'Ciencia Ficción',

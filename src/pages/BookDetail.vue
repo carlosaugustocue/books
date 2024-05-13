@@ -2,19 +2,64 @@
 <template>
   <div>
     <ToolBar />
+    <v-container>
+      <h1>Detalle de la página con ID: {{ $route.params.id }}</h1>
 
-    <h1>Detalle de la página con ID: {{ $route.params.id }}</h1>
-    <!-- <BookData /> -->
-    <v-card class="mx-auto" max-width="800" v-if="book">
-      <v-img :src="book.cover" height="400" />
-      <v-card-title>{{ book.title }}</v-card-title>
+    <v-row>
+      <v-col >
+        <v-skeleton-loader type="card">
+
+          <v-img
+              :src="book.cover"
+              style="
+              width: 0.5em;
+              border: 30px solid transparent;
+              border-image: linear-gradient(45deg, #f3ec78, #af4261) 1;
+              "
+            ></v-img>
+        </v-skeleton-loader>
+
+      </v-col>
+      <v-col>
+        <v-card>
+          <v-card-title class="text-uppercase" style="
+            font-size: 2em;
+            font-weight: 800;
+            color: #121a2f;
+
+          ">{{ book.title }}</v-card-title>
+           <v-chip
+      class="ma-2"
+      color="primary"
+      label
+    >
+      <v-icon icon="mdi-account-circle-outline" start></v-icon>
       <v-card-subtitle>{{ book.author }}</v-card-subtitle>
-      <v-card-text>{{ book.description }}</v-card-text>
-    </v-card>
-    <div v-else>
-      <p>No se encontró información del libro solicitado.</p>
-    </div>
-    <v-btn @click="addToCart(book)" color="primary"> Añadir al carrito </v-btn>
+    </v-chip>
+
+          <v-card-text style="
+            font-size: 1.5em;
+            font-weight: 500;
+            color: #121a2f;
+          ">${{ book.price }}</v-card-text>
+          <v-card-actions>
+
+            <v-btn @click="addToCart"
+        class="text-none ms-4 text-white"
+        color="blue-darken-4"
+        rounded="0"
+        variant="flat"
+      >
+      Añadir al carrito
+      </v-btn>
+          </v-card-actions>
+          <v-divider></v-divider>
+          <v-card-text>{{ book.description }}</v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+    </v-container>
+
 
   </div>
 </template>
