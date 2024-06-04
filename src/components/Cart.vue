@@ -59,7 +59,7 @@
               </v-col>
               <v-col cols="4" class="summary-item">
                 <div class="summary-label">Comprar</div>
-                <v-btn color="primary" class="summary-button">Proceder al pago</v-btn>
+                <v-btn color="primary" class="summary-button" @click="navigateToPage()">Proceder al pago</v-btn>
               </v-col>
             </v-row>
           </div>
@@ -71,9 +71,15 @@
 
 <script setup>
 import { useCartStore } from '@/store/useCartStore';
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const cart = useCartStore();
 const cartItems = cart.items;
+
+function navigateToPage ()  {
+  router.push(`/checkout/`)
+}
 
 function removeFromCart(id) {
   cart.removeFromCart(id);

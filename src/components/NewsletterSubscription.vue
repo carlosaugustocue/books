@@ -1,6 +1,6 @@
 <template>
   <v-container class="fill-height d-flex flex-column align-center">
-    <v-img class="mb-4" height="" src="@/assets/logo.png" />
+    <v-img class="mb-4" height="" src="@/assets/books_haven.ico" />
 
     <v-carousel class="mb-4" height="300" show-arrows>
       <v-carousel-item
@@ -19,7 +19,7 @@
           cols="12"
           sm="6"
           md="4"
-          lg="2"
+          lg="3"
         >
           <v-card class="mb-4 book-card" elevation="2">
             <v-img :src="book.imagenes.full" height="300" class="cover mt-4" />
@@ -34,7 +34,7 @@
             </v-card-text>
             <v-card-text class="price">${{ book.price.toLocaleString() }}</v-card-text>
             <v-card-actions>
-              <v-btn prepend-icon="$complete"  class="text-none mb-4" variant="flat" size="large" color="indigo-darken-3" @click="navigateToPage(book.id)">
+              <v-btn prepend-icon="$complete" class="text-none mb-4" variant="flat" size="large" color="indigo-darken-3" @click="navigateToPage(book.id)">
                 Ver detalle
               </v-btn>
             </v-card-actions>
@@ -56,17 +56,13 @@ import { useRouter } from 'vue-router';
 import books from '@/data/books.js';
 
 const router = useRouter();
-const props = defineProps({
-  searchQuery: {
-    type: String,
-    default: ''
-  }
-});
+const props = defineProps(['searchQuery']);
 
 const carouselImages = [
-  'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
-  'https://cdn.vuetifyjs.com/images/cards/hotel.jpg',
-  'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg'
+  '/images/f0c09a4e-776e-9a8d-3c7f-6659fa0bb5e4_imagen_movil.jpg',
+  '/images/books_1.jpg',
+  '/images/books_haven.png',
+  '/images/imagen3.jpg',
 ];
 
 const navigateToPage = (id) => {
@@ -74,7 +70,7 @@ const navigateToPage = (id) => {
 };
 
 const filteredBooks = computed(() => {
-  const query = props.searchQuery ? props.searchQuery.toLowerCase() : '';
+  const query = props.searchQuery.toLowerCase();
   return books.filter(
     (book) =>
       book.name.toLowerCase().includes(query) ||
@@ -140,6 +136,7 @@ const filteredBooks = computed(() => {
 }
 
 .author {
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.2em;
   font-weight: 600;
   color: #080f20;
@@ -152,6 +149,7 @@ const filteredBooks = computed(() => {
 .price {
   text-align: center;
   margin: 1px 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .price {
