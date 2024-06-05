@@ -16,14 +16,14 @@
                 <v-card-subtitle class="text-body-1">ISBN: {{ item.lib_eb_isbn }}</v-card-subtitle>
                 <v-card-subtitle class="text-body-1">Tipo:
                   <v-chip
-      :model-value="true"
-      class="ma-2"
-      color="teal"
-      prepend-icon="mdi-checkbox-marked-circle"
-
-    >
-    {{ item.lib_formato.valor_labels[0] }}
-    </v-chip></v-card-subtitle>
+                    :model-value="true"
+                    class="ma-2"
+                    color="teal"
+                    prepend-icon="mdi-checkbox-marked-circle"
+                  >
+                    {{ item.lib_formato.valor_labels[0] }}
+                  </v-chip>
+                </v-card-subtitle>
               </v-col>
               <v-col cols="12" md="3" class="d-flex flex-column justify-space-between align-end">
                 <div class="d-flex align-center">
@@ -49,15 +49,15 @@
         <v-col cols="12" class="text-center">
           <div class="summary-box">
             <v-row>
-              <v-col cols="4" class="summary-item">
+              <v-col cols="12" sm="4" class="summary-item">
                 <div class="summary-label">Total de libros</div>
                 <div class="summary-value">{{ cart.itemCount }}</div>
               </v-col>
-              <v-col cols="4" class="summary-item">
+              <v-col cols="12" sm="4" class="summary-item">
                 <div class="summary-label">Precio total</div>
                 <div class="summary-value">${{ cart.totalPrice.toLocaleString() }}</div>
               </v-col>
-              <v-col cols="4" class="summary-item">
+              <v-col cols="12" sm="4" class="summary-item">
                 <div class="summary-label">Comprar</div>
                 <v-btn color="primary" class="summary-button" @click="navigateToPage()">Proceder al pago</v-btn>
               </v-col>
@@ -102,7 +102,7 @@ function decrement(id) {
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
   color: #3f51b5;
 }
@@ -121,24 +121,20 @@ h2 {
 
 .cart-item-image {
   border-radius: 8px;
+  width: 100%;
+  height: auto;
 }
 
 .text-h6 {
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
-  color:#121a2f;
+  color: #121a2f;
 }
 
 .text-body-1 {
   font-size: 1rem;
   color: #757575;
-  margin-bottom: 0.5rem;
-}
-
-.text-body-2 {
-  font-size: 0.875rem;
-  color: #9e9e9e;
   margin-bottom: 0.5rem;
 }
 
@@ -150,6 +146,7 @@ h2 {
 
 .summary-box {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 1rem;
@@ -160,10 +157,13 @@ h2 {
 }
 
 .summary-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin-bottom: 1rem;
+}
+
+@media (min-width: 600px) {
+  .summary-box {
+    flex-direction: row;
+  }
 }
 
 .summary-label {
@@ -180,5 +180,11 @@ h2 {
 
 .summary-button {
   margin-top: 0.5rem;
+}
+
+@media (min-width: 600px) {
+  .summary-button {
+    margin-top: 0;
+  }
 }
 </style>
