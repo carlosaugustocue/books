@@ -19,7 +19,7 @@
           cols="12"
           sm="6"
           md="4"
-          lg="2"
+          lg="3"
         >
           <v-card class="mb-4 book-card" elevation="2">
             <v-img :src="book.imagenes.full" height="300" class="cover mt-4" />
